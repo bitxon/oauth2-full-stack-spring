@@ -9,3 +9,6 @@ services:
     environment:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_IMPORT=/tmp/import/demo-realm.json
+    volumes:
+      - ./keycloak/realms/demo-realm.json:/tmp/import/demo-realm.json
