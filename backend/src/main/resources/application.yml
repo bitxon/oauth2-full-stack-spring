@@ -1,0 +1,11 @@
+server.port: 8081
+
+management.endpoints.web.exposure.include: '*'
+
+spring.security.oauth2.resourceserver.jwt:
+  issuer-uri: http://localhost:9000/auth/realms/demo
+  jwk-set-uri: http://localhost:9000/auth/realms/demo/protocol/openid-connect/certs
+
+logging:
+  level:
+    org.springframework.security: DEBUG

@@ -22,3 +22,13 @@ docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
 # Copy file to local machine (run terminal from project root)
 docker cp keycloak:/tmp/demo-realm.json keycloak/realms/demo-realm.json
 ```
+
+## Backend
+Note: if you run docker compose and use postman to get token to get access to backend(resource-server) you will face a problem because postman and backend app in diferent networks
+```
+DEBUG o.s.s.oauth2.jwt.JwtClaimValidator       : The iss claim is not valid
+DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider  : Failed to authenticate since the JWT was invalid
+```
+`iss` in your postman token is `http://localhost.....`
+
+`iss` that resource server expected  `http://keycloak...... `

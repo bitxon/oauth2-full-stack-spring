@@ -12,3 +12,13 @@ services:
       - KEYCLOAK_IMPORT=/tmp/import/demo-realm.json
     volumes:
       - ./keycloak/realms/demo-realm.json:/tmp/import/demo-realm.json
+
+  backend:
+    container_name: backend
+    depends_on:
+      - keycloak
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8080
