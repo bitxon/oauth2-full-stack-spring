@@ -1,5 +1,6 @@
 server.port: 8080
 
 spring.security.oauth2.resourceserver.jwt:
-  issuer-uri: http://keycloak:8080/auth/realms/demo
+  #issuer-uri May failed 'iss' validation if backend and frontend in different networks
+  #issuer-uri: http://keycloak:8080/auth/realms/demo
   jwk-set-uri: http://keycloak:8080/auth/realms/demo/protocol/openid-connect/certs

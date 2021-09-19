@@ -10,6 +10,8 @@ services:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=admin
       - KEYCLOAK_IMPORT=/tmp/import/demo-realm.json
+        # https://www.keycloak.org/docs/latest/server_installation/#default-provider
+      - JAVA_OPTS_APPEND=-Dkeycloak.frontendUrl=http://localhost:9000/auth/
     volumes:
       - ./keycloak/realms/demo-realm.json:/tmp/import/demo-realm.json
 
