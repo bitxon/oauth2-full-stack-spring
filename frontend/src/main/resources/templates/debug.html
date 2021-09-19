@@ -1,0 +1,28 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Debug page</title>
+</head>
+<body>
+  <h1>Debug info</h1>
+  <div>
+    <a href="/"><-- Back to Home</a><br>
+  </div>
+
+  <h2>Access Token</h2>
+  <p><b>Token Type= </b><span th:text="${accessToken.tokenType}"></span></p>
+  <p><b>Token Value= </b><span th:text="${accessToken.tokenValue}"></span></p>
+  <p><b>Token Value Decoded Payload= </b><span th:text="${accessTokenDecodedPayload}"></span></p>
+  <p><b>IssuedAt= </b><span th:text="${accessToken.issuedAt}"></span></p>
+  <p><b>ExpiresAt= </b><span th:text="${accessToken.expiresAt}"></span></p>
+  <p><b>Scopes= </b><span th:text="${accessToken.scopes}"></span></p>
+
+  <h2>ID Token</h2>
+  <p><b>Token Value= </b><span th:text="${idToken.tokenValue}"></span></p>
+  <p><b>Token Value Decoded Payload= </b><span th:text="${idTokenDecodedPayload}"></span></p>
+  <p><b>IssuedAt= </b><span th:text="${idToken.issuedAt}"></span></p>
+  <p><b>ExpiresAt= </b><span th:text="${idToken.expiresAt}"></span></p>
+
+</body>
+</html>

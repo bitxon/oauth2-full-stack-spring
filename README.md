@@ -24,3 +24,6 @@ docker cp keycloak:/tmp/demo-realm.json keycloak/realms/demo-realm.json
 ```
 
 ## Backend
+## Frontend
+
+For more configuration details see here: https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2login-boot-property-mappings
