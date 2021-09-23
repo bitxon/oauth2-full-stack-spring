@@ -10,6 +10,10 @@
     <a href="/"><-- Back to Home</a><br>
   </div>
 
+  <h2>Common Info</h2>
+  <p><b>Authorities= </b><span th:text="${authorities}"></span></p>
+  <hr>
+
   <h2>Access Token</h2>
   <p><b>Token Type= </b><span th:text="${accessToken.tokenType}"></span></p>
   <p><b>Token Value= </b><span th:text="${accessToken.tokenValue}"></span></p>
@@ -17,6 +21,7 @@
   <p><b>IssuedAt= </b><span th:text="${accessToken.issuedAt}"></span></p>
   <p><b>ExpiresAt= </b><span th:text="${accessToken.expiresAt}"></span></p>
   <p><b>Scopes= </b><span th:text="${accessToken.scopes}"></span></p>
+  <hr>
 
   <h2>ID Token</h2>
   <p><b>Token Value= </b><span th:text="${idToken.tokenValue}"></span></p>
