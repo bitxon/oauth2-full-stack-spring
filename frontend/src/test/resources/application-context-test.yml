@@ -1,0 +1,22 @@
+server.port: 8080
+
+app.client:
+  backend:
+    baseUrl: mock_url
+
+spring.security.oauth2.client:
+  registration:
+    keycloak:
+      client-id: mock
+      client-secret: mock
+      scope: mock
+      authorization-grant-type: mock
+      redirect-uri: mock_url
+  provider:
+    keycloak:
+      #issuerUri: requires keycloak to be up and running
+      authorization-uri: mock_url
+      token-uri: mock_url
+      jwk-set-uri: mock_url
+      user-info-uri: mock_url
+      user-name-attribute: mock

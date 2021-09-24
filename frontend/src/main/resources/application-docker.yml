@@ -5,6 +5,8 @@ app.client:
     baseUrl: http://backend:8080/tickets
 
 spring.security.oauth2.client:
+  # https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2login-boot-property-mappings
+  # https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2Client-client-registration
   registration:
     keycloak:
       client-id: demo-client-auth-code
@@ -14,6 +16,7 @@ spring.security.oauth2.client:
       redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
   provider:
     keycloak:
+      issuerUri: http://keycloak:8080/auth/realms/demo # keycloak needs to be up and running
       authorization-uri: http://localhost:9000/auth/realms/demo/protocol/openid-connect/auth
       token-uri: http://keycloak:8080/auth/realms/demo/protocol/openid-connect/token
       jwk-set-uri: http://keycloak:8080/auth/realms/demo/protocol/openid-connect/certs
