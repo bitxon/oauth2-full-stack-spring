@@ -10,6 +10,12 @@
     <a href="/"><-- Back to Home></a><br>
   </div>
 
+  <div sec:authorize="hasRole('app-admin')">
+    <h2>As Admin You can see all tickets</h2>
+  </div>
+  <div sec:authorize="hasRole('app-user')">
+    <h2>As User you can see only tickets that belongs to you</h2>
+  </div>
   <div th:each="ticket : ${tickets}">
     <p><span th:text="${ticket.arrival}"></span>-><span th:text="${ticket.departure}"></span></p>
   </div>

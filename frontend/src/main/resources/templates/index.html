@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Home page</title>
@@ -7,8 +7,16 @@
 <body>
   <h1>Home</h1>
   <div>
-    <a href="/tickets">Tickets page</a><br>
-    <a href="/debug">Debug page</a><br>
+
+    <div sec:authorize="isAnonymous()">
+      <a href="/oauth2/authorization/keycloak">Login with keycloak</a><br>
+    </div>
+
+    <div sec:authorize="isAuthenticated()">
+      <a href="/tickets">Tickets page</a><br>
+      <a href="/debug">Debug page</a><br>
+    </div>
+
   </div>
 </body>
 </html>
