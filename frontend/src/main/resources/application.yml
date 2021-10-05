@@ -1,26 +1,11 @@
 server.port: 8080
+spring.profiles.active: local
 
 management.endpoints.web.exposure.include: '*'
 
 app.client:
   backend:
     baseUrl: http://localhost:8081/tickets
-
-spring.security.oauth2.client:
-  registration:
-    keycloak:
-      client-id: demo-client-auth-code
-      client-secret: fe5f8402-cb20-40e4-988f-43239c55095f
-      scope: 'openid, profile, roles'
-      authorization-grant-type: authorization_code
-      redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
-  provider:
-    keycloak:
-      authorization-uri: http://localhost:9000/auth/realms/demo/protocol/openid-connect/auth
-      token-uri: http://localhost:9000/auth/realms/demo/protocol/openid-connect/token
-      jwk-set-uri: http://localhost:9000/auth/realms/demo/protocol/openid-connect/certs
-      user-info-uri: http://localhost:9000/auth/realms/demo/protocol/openid-connect/userinfo
-      user-name-attribute: preferred_username
 
 logging:
   level:

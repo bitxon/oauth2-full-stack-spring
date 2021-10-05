@@ -2,7 +2,7 @@ server.port: 8080
 
 app.client:
   backend:
-    baseUrl: http://backend:8080/tickets
+    baseUrl: http://localhost:8081/tickets
 
 spring.security.oauth2.client:
   registration:
@@ -15,7 +15,7 @@ spring.security.oauth2.client:
   provider:
     keycloak:
       authorization-uri: http://localhost:9000/auth/realms/demo/protocol/openid-connect/auth
-      token-uri: http://keycloak:8080/auth/realms/demo/protocol/openid-connect/token
-      jwk-set-uri: http://keycloak:8080/auth/realms/demo/protocol/openid-connect/certs
-      user-info-uri: http://keycloak:8080/auth/realms/demo/protocol/openid-connect/userinfo
+      token-uri: http://localhost:9000/auth/realms/demo/protocol/openid-connect/token
+      jwk-set-uri: http://localhost:9000/auth/realms/demo/protocol/openid-connect/certs
+      user-info-uri: http://localhost:9000/auth/realms/demo/protocol/openid-connect/userinfo
       user-name-attribute: preferred_username
