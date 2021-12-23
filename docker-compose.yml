@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   keycloak:
+    #image: mihaibob/keycloak:15.0.1 # for arm64
     image: jboss/keycloak:15.0.2
     container_name: keycloak
     ports:

@@ -4,6 +4,7 @@
 ```bash
 docker-compose -f "docker-compose.yml" up -d --build
 ```
+P.S for Mac with M1(arm64) chip please update keycloak image
 
 
 ## Keycloak
