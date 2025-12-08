@@ -1,18 +1,23 @@
 services:
   keycloak:
-    #image: mihaibob/keycloak:15.0.1 # for arm64
-    image: jboss/keycloak:15.0.2
+    image: quay.io/keycloak/keycloak:26.0
     container_name: keycloak
     ports:
-      - 9000:8080
+      - "9000:8080"
     environment:
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=admin
-      - KEYCLOAK_IMPORT=/tmp/import/demo-realm.json
-        # https://www.keycloak.org/docs/latest/server_installation/#default-provider
-      - JAVA_OPTS_APPEND=-Dkeycloak.frontendUrl=http://localhost:9000/auth/
+      # Keycloak configuration https://www.keycloak.org/server/all-config
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+      - KC_HTTP_RELATIVE_PATH=/auth             # Maintains /auth path for backward compatibility
+      - KC_HOSTNAME_DEBUG=true                  # Expose endpoint /realms/demo/hostname-debug
+      - KC_HOSTNAME=http://localhost:9000/auth/ # Browser-facing URL
+      - KC_HOSTNAME_BACKCHANNEL_DYNAMIC=true    # Allow backend(docker network) to use its own hostname
+    command:
+      - start-dev
+      - --import-realm
+      - --verbose
     volumes:
-      - ./keycloak/realms/demo-realm.json:/tmp/import/demo-realm.json
+      - ./keycloak/realms/demo-realm.json:/opt/keycloak/data/import/demo-realm.json
 
   backend:
     container_name: backend

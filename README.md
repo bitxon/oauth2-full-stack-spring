@@ -25,7 +25,9 @@ P.S for Mac with M1(arm64) chip please update keycloak image
 
 ---
 ## Keycloak
-Original instructions see here: https://www.keycloak.org/getting-started/getting-started-docker
+Open Keycloak Admin Console: http://localhost:9000/auth/admin \
+Open Keycloak User Console: http://localhost:9000/auth/realms/demo/account \
+Open Keycloak Debug Hostname Page: http://localhost:9000/auth/realms/demo/hostname-debug
 
 ### Exporting a realm
 ```bash
@@ -39,6 +41,10 @@ docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
 -Dkeycloak.migration.file=/tmp/demo-realm.json
 # Copy file to local machine (run terminal from project root)
 docker cp keycloak:/tmp/demo-realm.json keycloak/realms/demo-realm.json
+```
+
+```shell
+docker cp keycloak:/opt/keycloak/data/export/demo-realm.json keycloak/realms/demo-realm.json
 ```
 
 ### Keycloak API
@@ -67,10 +73,10 @@ docker cp keycloak:/tmp/demo-realm.json keycloak/realms/demo-realm.json
     --data state=j4kl3im2 \
     --data code=<PUT_YOUR_CODE_FROM_STEP_1_HERE> | jq .
   ```
----
-## Backend
 
 ---
 ## Frontend
+
+Open Frontend UI: http://localhost:8080 \
 
 For more configuration details see here: https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2login-boot-property-mappings
