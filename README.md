@@ -1,12 +1,30 @@
 # OAuth2 Full Stack Demo App
 
-## Build and Run this poject
+<!-- TOC -->
+* [OAuth2 Full Stack Demo App](#oauth2-full-stack-demo-app)
+  * [Build and Run this project](#build-and-run-this-project)
+  * [Frontend](#frontend)
+  * [Test Data](#test-data)
+    * [Test Users](#test-users)
+    * [Test Clients](#test-clients)
+  * [Keycloak](#keycloak)
+    * [Keycloak API](#keycloak-api)
+      * [Get Token using `client_credentials` Grant](#get-token-using-client_credentials-grant)
+      * [Get Token using `authorization_code` Grant](#get-token-using-authorization_code-grant)
+    * [Keycloak Export Realm](#keycloak-export-realm)
+<!-- TOC -->
+
+## Build and Run this project
 ```bash
-docker-compose -f "docker-compose.yml" up -d --build
+docker compose -f "docker-compose.yml" up -d --build
 ```
-P.S for Mac with M1(arm64) chip please update keycloak image
 
+---
+## Frontend
+Open Frontend UI: [Login page](http://localhost:8080)\
+For more configuration details see [Spring Security OAuth2 Login Boot Property Mappings](https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2login-boot-property-mappings)
 
+---
 ## Test Data
 
 ### Test Users
@@ -29,24 +47,7 @@ Open Keycloak Admin Console: http://localhost:9000/auth/admin \
 Open Keycloak User Console: http://localhost:9000/auth/realms/demo/account \
 Open Keycloak Debug Hostname Page: http://localhost:9000/auth/realms/demo/hostname-debug
 
-### Exporting a realm
-```bash
-# Run export
-docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh \
--Djboss.socket.binding.port-offset=100 \
--Dkeycloak.migration.action=export \
--Dkeycloak.migration.provider=singleFile \
--Dkeycloak.migration.realmName=demo \
--Dkeycloak.migration.usersExportStrategy=REALM_FILE \
--Dkeycloak.migration.file=/tmp/demo-realm.json
-# Copy file to local machine (run terminal from project root)
-docker cp keycloak:/tmp/demo-realm.json keycloak/realms/demo-realm.json
-```
-
-```shell
-docker cp keycloak:/opt/keycloak/data/export/demo-realm.json keycloak/realms/demo-realm.json
-```
-
+---
 ### Keycloak API
 
 #### Get Token using `client_credentials` Grant
@@ -75,8 +76,21 @@ docker cp keycloak:/opt/keycloak/data/export/demo-realm.json keycloak/realms/dem
   ```
 
 ---
-## Frontend
+### Keycloak Export Realm
 
-Open Frontend UI: http://localhost:8080 \
-
-For more configuration details see here: https://docs.spring.io/spring-security/site/docs/5.2.12.RELEASE/reference/html/oauth2.html#oauth2login-boot-property-mappings
+1. Stop Keycloak (but keep the container)
+    ```shell
+    docker compose -f "docker-compose.yml" stop keycloak
+    ```
+2. Export Realm (using the stopped container's data)
+    ```shell
+    docker compose -f "docker-compose.yml" run --rm keycloak export --realm demo --file /opt/keycloak/data/export-demo-realm.json
+    ```
+3. Copy Exported Realm File to Host
+    ```shell
+    docker cp keycloak:/opt/keycloak/data/export-demo-realm.json ./keycloak/realms/demo-realm.json
+    ```
+4. ReStart Keycloak
+    ```shell
+    docker compose -f "docker-compose.yml" start keycloak
+    ```

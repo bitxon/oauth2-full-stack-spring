@@ -1,6 +1,6 @@
 services:
   keycloak:
-    image: quay.io/keycloak/keycloak:26.0
+    image: quay.io/keycloak/keycloak:26.5.0
     container_name: keycloak
     ports:
       - "127.0.0.1:9000:8080"
@@ -17,6 +17,7 @@ services:
       - --import-realm
     volumes:
       - ./keycloak/realms/demo-realm.json:/opt/keycloak/data/import/demo-realm.json
+      - keycloak_data:/opt/keycloak/data
 
   backend:
     container_name: backend
@@ -38,3 +39,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8080:8080
+
+volumes:
+  keycloak_data:
